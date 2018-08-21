@@ -31,23 +31,26 @@ class HelloApp:
 		self.label.grid(row = 0, column = 0, columnspan = 2)
 		self.labels = []
 
-		ttk.Button(master, text = 'Update', command = self.UpdateE2Users).grid(row = 1, column = 1, columnspan = 2)
+		ttk.Button(master, text = 'Update', command = self.UpdateE2Users).grid(row = 1, column = 0, columnspan = 2)
 
+		# Create lables for all the possible E2 users (based on licenses avaialble)
 		i = 0
 		while i < MaxUsers:
-			self.labels.append(ttk.Label(master, text = '').grid(row=i+2,column = 0))
+			defaultText = 'E2 User - ' + str(i+1)
+			self.labels.append(ttk.Label(master, text = defaultText).grid(row=i+2,column = 0))
 			i += 1
 
-		count = 0
-		for file in files:
-			f = open(file, 'r')
-			userinfo = f.read()
-			myLabel = self.labels[count]
-			myLabel.config(text = userinfo)
+		# User the current users to update the list of items
+		# count = 0
+		# for file in files:
+		# 	f = open(file, 'r')
+		# 	userinfo = f.read()
+		# 	myLabel = self.labels[count]
+		# 	myLabel.config(text = userinfo)
 
-			#print ('\t', file, '\tE2 User(' +  str(count) + "): \t"+ userinfo[:37] + "  " + userinfo[37:])
-			count += 1
-			f.close()
+		# 	#print ('\t', file, '\tE2 User(' +  str(count) + "): \t"+ userinfo[:37] + "  " + userinfo[37:])
+		# 	count += 1
+		# 	f.close()
 
 	def UpdateE2Users(self):
 		self.label.config(text = 'Updated E2 Users')
